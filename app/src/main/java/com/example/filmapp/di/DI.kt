@@ -5,6 +5,8 @@ import com.example.filmapp.core.RouterImpl
 import com.example.filmapp.data.network.Api
 import com.example.filmapp.data.network.NetworkRepositoryImpl
 import com.example.filmapp.domain.repository.NetworkRepository
+import com.example.filmapp.domain.use_cases.detail_movie.GetMovieDetailUseCase
+import com.example.filmapp.domain.use_cases.movies_list.GetMoviesUseCase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Binds
@@ -65,5 +67,15 @@ interface Binds {
 @InstallIn(SingletonComponent::class)
 @Module
 class UseCaseModule {
+
+    @Provides
+    fun provideGetMoviesUseCase(networkRepository: NetworkRepository): GetMoviesUseCase {
+        return GetMoviesUseCase(networkRepository)
+    }
+
+    @Provides
+    fun provideGetDetailMovieUseCase(networkRepository: NetworkRepository): GetMovieDetailUseCase {
+        return GetMovieDetailUseCase(networkRepository)
+    }
 
 }
