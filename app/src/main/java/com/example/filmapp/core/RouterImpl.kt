@@ -2,8 +2,9 @@ package com.example.filmapp.core
 
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import javax.inject.Inject
 
-class RouterImpl : Router {
+class RouterImpl @Inject constructor(): Router {
     private var navController: NavHostController? = null
     override fun attach(navHostController: NavHostController) {
         navController = navHostController

@@ -8,21 +8,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class BaseViewModel<Event, State>(
+abstract class BaseViewModel<Event, State>(
     private val useCases: List<UseCase<Event, State>>,
     private val reducer: Reducer<Event, State>,
     initialState: State,
 ) : ViewModel() {
 
-    val _state = MutableStateFlow(initialState)
+    private val _state = MutableStateFlow(initialState)
     val state: StateFlow<State>
         get() = _state.asStateFlow()
 
     private val eventHandlers = mutableListOf<EventHandler<Event>>()
-
-    fun doOnEvent(filter : (Event) -> Boolean, onEvent : (Event) -> Unit){
-        eventHandlers.add(EventHandler(filter, onEvent))
-    }
 
     protected fun handleEvent(event: Event) {
         val newState = reducer.reduce(event, state.value)

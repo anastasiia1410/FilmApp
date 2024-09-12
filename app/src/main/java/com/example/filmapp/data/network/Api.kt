@@ -20,5 +20,6 @@ interface Api {
 
     companion object {
         private const val API_KEY = "efa443b03883377e3764ccdee9af39b0"
+        const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }

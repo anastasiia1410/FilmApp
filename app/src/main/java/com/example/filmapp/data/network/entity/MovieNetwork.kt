@@ -1,5 +1,6 @@
 package com.example.filmapp.data.network.entity
 
+import com.example.filmapp.data.network.Api.Companion.IMAGE_BASE_URL
 import com.example.filmapp.domain.entity.Movie
 import com.google.gson.annotations.SerializedName
 
@@ -18,7 +19,7 @@ data class MovieNetwork(
 fun MovieNetwork.toMovie(): Movie {
     return Movie(
         id = this.id,
-        posterPath = this.posterPath,
+        posterPath = IMAGE_BASE_URL + this.posterPath,
         title = this.title,
         voteAverage = this.voteAverage,
         overview = this.overview

@@ -39,7 +39,7 @@ class DataModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://www.themoviedb.org/")
+            .baseUrl("https://api.themoviedb.org/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
